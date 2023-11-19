@@ -10,9 +10,9 @@ namespace Bowling.Classes
     {
         public Player()
         {
-            for(byte i = 0; i <= 10; i++)
+            for(byte i = 1; i <= 10; i++)
             {
-                Results.Add(new BowlingResult(1));
+                Results.Add(new BowlingResult(i));
             }
         }
 
