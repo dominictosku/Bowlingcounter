@@ -31,7 +31,7 @@ namespace Bowling
         public BowlingResult GetBowlingResult(BowlingResult result, int playerThrow)
         {
             result.PinsStanding -= playerThrow;
-            result.Points += playerThrow;
+            result.Points[result.Round] += playerThrow;
             result.Round++;
 
             if(result.PinsStanding <= 0) 
@@ -44,16 +44,16 @@ namespace Bowling
 
         public void CreateBowlingTable()
         {
-            Console.WriteLine("-----------------------------------------------------------");
-            Console.WriteLine("| Frame |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 | 10 |");
-            Console.WriteLine("|-------|----|----|----|----|----|----|----|----|----|----|");
+            Console.WriteLine("|-------------------------------------------------------------------|");
+            Console.WriteLine("| Frame |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  | 10  |");
+            Console.WriteLine("|-------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|");
 		    Console.Write("|Points |");
             foreach(var result in Player.Results) 
             {
-				Console.Write("  {0} |", result.Points);
+				Console.Write(" {0}|{1} |", result.Points[0], result.Points[1]);
             }
             Console.WriteLine();
-            Console.WriteLine("------------------------------------------------------------");
+            Console.WriteLine("|-------------------------------------------------------------------|");
         }
 
         private BowlingResult GetPlayerResultForFrame(short index)
