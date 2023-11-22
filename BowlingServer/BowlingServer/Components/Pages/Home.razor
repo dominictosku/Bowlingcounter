@@ -2,4 +2,45 @@
 
 <PageTitle>Welcome to bowling!</PageTitle>
 
-<h1>Start your Streak now</h1>
+<h2>Bowling Score Table</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Frame</th>
+            @for(var i = 1; i <= 10; i++)
+            {
+                <th>@i</th>
+            }
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@BowlingService.Player.Name</td>
+            @foreach(var result in BowlingService.Player.Results)
+            {
+                <td>@result.Points[0]</td>
+            }
+            <th>@BowlingService.Player.Results.Sum(r => r.Points.Sum(p => p))</th>
+        </tr>
+    </tbody>
+</table>
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 50%;
+        margin: 20px auto;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>

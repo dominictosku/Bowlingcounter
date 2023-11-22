@@ -1,21 +1,29 @@
 ﻿using Bowling.Classes;
+using Bowling.Interfaces;
 
 namespace Bowling
 {
-    public class BowlingService
+    public class BowlingService : IBowlingService
     {
-        public BowlingService(Player player) 
+        public BowlingService() { }
+
+        public BowlingService(Player player)
+        {
+            InitializeGame(player);
+        }
+        public Player Player { get; set; } = new();
+        public short CurrentFrame { get; set; } = 1;
+        public BowlingResult CurrentResult { get; set; } = new(1);
+
+        public void InitializeGame(Player player)
         {
             Player = player;
             CurrentResult = GetPlayerResultForFrame(1);
         }
-        public Player Player { get; set; }
-        public short CurrentFrame { get; set; } = 1;
-        public BowlingResult CurrentResult { get; set; }
 
         public void PlayGame(int playerThrow)
         {
-            if(CurrentResult.Round >= 2)
+            if (CurrentResult.Round >= 2)
             {
                 CurrentFrame++;
                 CurrentResult.RoundOver = true;
@@ -34,7 +42,7 @@ namespace Bowling
             result.Points[result.Round] += playerThrow;
             result.Round++;
 
-            if(result.PinsStanding <= 0) 
+            if (result.PinsStanding <= 0)
             {
                 result.PinsStanding = BowlingResult.MAXPINS;
             }
@@ -47,10 +55,10 @@ namespace Bowling
             Console.WriteLine("|-------------------------------------------------------------------|");
             Console.WriteLine("| Frame |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  | 10  |");
             Console.WriteLine("|-------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|");
-		    Console.Write("|Points |");
-            foreach(var result in Player.Results) 
+            Console.Write("|Points |");
+            foreach (var result in Player.Results)
             {
-				Console.Write(" {0}|{1} |", result.Points[0], result.Points[1]);
+                Console.Write(" {0}|{1} |", result.Points[0], result.Points[1]);
             }
             Console.WriteLine();
             Console.WriteLine("|-------------------------------------------------------------------|");
