@@ -18,6 +18,7 @@ namespace Bowling
         public void InitializeGame(Player player)
         {
             Player = player;
+            CurrentFrame = 1;
             CurrentResult = GetPlayerResultForFrame(1);
         }
 
@@ -25,12 +26,14 @@ namespace Bowling
         {
             if (CurrentResult.Round >= 2)
             {
+                if (CurrentFrame == 10)
+                {
+                    return;
+                }
                 CurrentFrame++;
                 CurrentResult.RoundOver = true;
-                Player.Results.Add(CurrentResult);
                 CurrentResult = GetPlayerResultForFrame(CurrentFrame);
                 CurrentResult.Frame = CurrentFrame;
-                return;
             }
             GetBowlingResult(CurrentResult, playerThrow);
 
@@ -39,7 +42,7 @@ namespace Bowling
         public BowlingResult GetBowlingResult(BowlingResult result, int playerThrow)
         {
             result.PinsStanding -= playerThrow;
-            result.Points[result.Round] += playerThrow;
+            result.PinsPerRound[result.Round] += playerThrow;
             result.Round++;
 
             if (result.PinsStanding <= 0)
@@ -58,7 +61,7 @@ namespace Bowling
             Console.Write("|Points |");
             foreach (var result in Player.Results)
             {
-                Console.Write(" {0}|{1} |", result.Points[0], result.Points[1]);
+                Console.Write(" {0}|{1} |", result.PinsPerRound[0], result.PinsPerRound[1]);
             }
             Console.WriteLine();
             Console.WriteLine("|-------------------------------------------------------------------|");

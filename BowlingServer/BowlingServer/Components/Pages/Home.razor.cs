@@ -8,18 +8,25 @@ namespace BowlingServer.Components.Pages
     {
         [Inject]
         public IBowlingService BowlingService { get; set; }
+        public int LastRoll { get; set; } = 0;
 
         protected override void OnInitialized()
+        {
+            ResetGame();
+        }
+
+        private void PlayRound() 
+        {
+            var random = new Random().Next(0, 10);
+            BowlingService.PlayGame(random);
+            LastRoll = random;
+        }
+
+        private void ResetGame()
         {
             var player = new Player();
             player.Name = "John Bowling";
             BowlingService.InitializeGame(player);
-        }
-
-        public void PlayRound() 
-        {
-            var random = new Random().Next(0, 10);
-            BowlingService.PlayGame(random);
         }
     }
 }

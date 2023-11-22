@@ -18,7 +18,8 @@ namespace Bowling.Classes
 
         public short Frame;
         public byte Round { get; set; }
-        public int[] Points { get; set; } = new int[3] { 0,0,0 }; 
+        public int Points => PinsPerRound.Sum(x => x);
+        public int[] PinsPerRound { get; set; } = new int[3] { 0,0,0 }; 
         public int PinsStanding
         {
             get
