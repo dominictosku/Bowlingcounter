@@ -56,9 +56,9 @@ namespace Bowling.Classes
                 case BowlingRoll.Miss:
                     return "O";
                 case BowlingRoll.Strike:
-                    return "X";
+                    return "▶◀";
                 case BowlingRoll.Spare:
-                    return "/";
+                    return "◢";
                 default:
                     return PinsPerRound[round].ToString();
             }
