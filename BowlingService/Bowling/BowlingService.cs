@@ -41,6 +41,11 @@ namespace Bowling
 
         public BowlingResult GetBowlingResult(BowlingResult result, int playerThrow)
         {
+            if(playerThrow >= result.PinsStanding)
+            {
+                playerThrow = result.PinsStanding;
+            }
+
             result.PinsStanding -= playerThrow;
             result.PinsPerRound[result.Round] += playerThrow;
             result.Round++;

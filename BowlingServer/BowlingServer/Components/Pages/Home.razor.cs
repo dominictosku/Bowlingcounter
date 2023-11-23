@@ -17,7 +17,7 @@ namespace BowlingServer.Components.Pages
 
         private void PlayRound() 
         {
-            var random = new Random().Next(0, 10);
+            var random = new Random().Next(0, 11);
             BowlingService.PlayGame(random);
             LastRoll = random;
         }
