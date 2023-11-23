@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace Bowling.Classes
 {
+    public enum BowlingRoll
+    {
+        Strike,
+        Spare,
+        Normal,
+        Miss
+    }
+
     public class BowlingResult
     {
         private int pinsStanding = MAXPINS;
@@ -19,7 +27,8 @@ namespace Bowling.Classes
         public short Frame;
         public byte Round { get; set; }
         public int Points => PinsPerRound.Sum(x => x);
-        public int[] PinsPerRound { get; set; } = new int[3] { 0,0,0 }; 
+        public int[] PinsPerRound { get; set; } = new int[3] { 0,0,0 };
+        public BowlingRoll[] RollResultPerRound { get; set; } = new BowlingRoll[3] { BowlingRoll.Miss, BowlingRoll.Miss, BowlingRoll.Miss };
         public int PinsStanding
         {
             get
@@ -35,6 +44,24 @@ namespace Bowling.Classes
                 }
             }
         }
+
         public bool RoundOver { get; set; }
+
+        public string GetSymbolForBowlingRoll(int round)
+        {
+            var roll = RollResultPerRound[round];
+
+            switch (roll)
+            {
+                case BowlingRoll.Miss:
+                    return "O";
+                case BowlingRoll.Strike:
+                    return "X";
+                case BowlingRoll.Spare:
+                    return "/";
+                default:
+                    return PinsPerRound[round].ToString();
+            }
+        }
     }
 }

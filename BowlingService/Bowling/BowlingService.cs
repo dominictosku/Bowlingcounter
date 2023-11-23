@@ -1,5 +1,6 @@
 ﻿using Bowling.Classes;
 using Bowling.Interfaces;
+using System.Threading.Tasks.Sources;
 
 namespace Bowling
 {
@@ -46,6 +47,7 @@ namespace Bowling
                 playerThrow = result.PinsStanding;
             }
 
+            result.RollResultPerRound[result.Round] = CheckResultForRoll(result, playerThrow);
             result.PinsStanding -= playerThrow;
             result.PinsPerRound[result.Round] += playerThrow;
             result.Round++;
@@ -56,6 +58,27 @@ namespace Bowling
             }
 
             return result;
+        }
+
+        public BowlingRoll CheckResultForRoll(BowlingResult result, int playerThrow)
+        {
+            if (playerThrow == 10)
+            {
+                return BowlingRoll.Strike;
+            }
+
+            if (playerThrow == 0)
+            {
+                return BowlingRoll.Miss;
+            }
+
+            if (result.PinsStanding <= playerThrow && CurrentResult.Round >= 1)
+            {
+                return BowlingRoll.Spare;
+            }
+
+
+            return BowlingRoll.Normal;
         }
 
         public void CreateBowlingTable()
