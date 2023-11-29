@@ -16,15 +16,15 @@ namespace Bowling.Classes
 
     public class BowlingResult
     {
+        public const int MAXPINS = 10;
+
         private int pinsStanding = MAXPINS;
         public BowlingResult(short frame) 
         {
             Frame = frame;
         }
 
-        public const int MAXPINS = 10;
-
-        public short Frame;
+        public short Frame { get; set; }
         public byte Round { get; set; }
         public int Points => PinsPerRound.Sum(x => x);
         public int[] PinsPerRound { get; set; } = new int[3] { 0,0,0 };
@@ -45,7 +45,7 @@ namespace Bowling.Classes
             }
         }
 
-        public bool RoundOver { get; set; }
+        public bool FrameOver { get; set; }
 
         public string GetSymbolForBowlingRoll(int round)
         {

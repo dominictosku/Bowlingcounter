@@ -32,12 +32,11 @@ namespace Bowling
                     return;
                 }
                 CurrentFrame++;
-                CurrentResult.RoundOver = true;
+                CurrentResult.FrameOver = true;
                 CurrentResult = GetPlayerResultForFrame(CurrentFrame);
                 CurrentResult.Frame = CurrentFrame;
             }
             GetBowlingResult(CurrentResult, playerThrow);
-
         }
 
         public BowlingResult GetBowlingResult(BowlingResult result, int playerThrow)
