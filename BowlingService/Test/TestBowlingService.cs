@@ -1,5 +1,4 @@
 ﻿using Bowling;
-using Bowling.Classes;
 
 namespace Test
 {

@@ -1,6 +1,4 @@
-﻿using Bowling.Classes;
-
-namespace Test
+﻿namespace Test
 {
     public class TestBowlingResult
     {
