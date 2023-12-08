@@ -24,8 +24,11 @@ bash
 Usage
 
 Running the Application
+
 There are two projects:
+
 BowlingCounter is for the console application
+
 BowlingServer is for the web version
 
 I advise using BowlingServer for the web version, as it is more advanced
