@@ -6,10 +6,7 @@ Table of Contents
 
     Prerequisites
     Installation
-    Configuration
     Usage
-    Contributing
-    License
 
 Prerequisites
 
@@ -25,6 +22,7 @@ bash
     dotnet build
 
 Usage
+
 Running the Application
 There are two projects:
 BowlingCounter is for the console application
@@ -36,4 +34,4 @@ To run the application, switch to either the BowlingCounter or BowlingSever dire
 
 bash
 
-dotnet run
+    dotnet build
