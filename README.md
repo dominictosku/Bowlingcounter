@@ -29,7 +29,7 @@ There are two projects:
 
 BowlingCounter is for the console application
 
-BowlingServer is for the web version
+BowlingServer is for the web version, the port will be shown in the console
 
 I advise using BowlingServer for the web version, as it is more advanced
 
